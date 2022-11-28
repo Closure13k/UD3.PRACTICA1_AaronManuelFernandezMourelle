@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<jdbcDataAdapter class="net.sf.jasperreports.data.jdbc.JdbcDataAdapterImpl">
+  <name>Conexión DB Personas</name>
+  <classpath>C:\Users\AaronFM\Documents\GitHub\UD3.PRACTICA1_AaronManuelFernandezMourelle\lib\mysql-connector-java-8.0.26.jar</classpath>
+  <driver>com.mysql.jdbc.Driver</driver>
+  <username>usuario</username>
+  <password>abc123.</password>
+  <url>jdbc:mysql://192.168.56.104:3306/BDInformes1</url>
+  <database></database>
+  <savePassword>true</savePassword>
+  <serverAddress></serverAddress>
+</jdbcDataAdapter>
