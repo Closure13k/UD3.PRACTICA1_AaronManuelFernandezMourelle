@@ -21,6 +21,12 @@ import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JasperViewer;
 import org.apache.commons.collections4.bag.HashBag;
+import Main.ReportViewer;
+import java.sql.Connection;
+
+import static Controller.JasperParameters.REPORTS_DIRECTORY;
+import java.awt.HeadlessException;
+import javax.swing.JOptionPane;
 
 /*
 Para todos los informes:
@@ -43,15 +49,19 @@ Para todos los informes:
  */
 public final class Reports {
 
-    private static final String REPORTS_DIRECTORY = ".\\reports";
-
-    private static final Reports reportsManager = new Reports();
+    private static final String NO_DATA = "El informe no tiene datos.";
+    private static final ReportViewer REPORT_VIEWER = ReportViewer.getInstance();
 
     //<editor-fold defaultstate="collapsed" desc="Hidden constructor">
     private Reports() {
+        throw new UnsupportedOperationException("Not instantiable");
     }
 
     //</editor-fold>
+    public static void main(String[] args) {
+        REPORT_VIEWER.setVisible(true);
+    }
+
     /**
      * Informe ejercicio 1.
      *
@@ -59,15 +69,7 @@ public final class Reports {
      * registros.
      */
     public static void predefinedFullReport() {
-        try {
-            JasperReport compiledReport = JasperCompileManager.compileReport(REPORTS_DIRECTORY.concat("\\ejercicio_1.jrxml"));
-            JasperPrint fillReport = JasperFillManager.fillReport(compiledReport, null, DatabaseConnection.getInstance());
-            JasperViewer.viewReport(fillReport, false);
-        } catch (JRException ex) {
-            ex.printStackTrace();
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
+        compileFillAndShowReport("\\ejercicio_1.jrxml");
     }
 
     /**
@@ -76,21 +78,8 @@ public final class Reports {
      * Informe predefinido. Mostrará: ap1 y nombre de todos los menores de edad.
      */
     public static void predefinedUnderagedReport() {
-        try {
-            JasperReport compiledReport = JasperCompileManager.compileReport(REPORTS_DIRECTORY.concat("\\ejercicio_2.jrxml"));
-            Map<String, Object> map = new HashMap<>(Map.of("nameSurname", "Aaron Manuel Fernandez Mourelle"));
-            JasperPrint fillReport = JasperFillManager.fillReport(
-                    compiledReport,
-                    map,
-                    DatabaseConnection.getInstance()
-            );
-            JasperViewer.viewReport(fillReport);
-            System.out.println(DatabaseConnection.getInstance().isClosed());
-        } catch (JRException ex) {
-            ex.printStackTrace();
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
+
+        compileFillAndShowReport("\\ejercicio_2.jrxml");
     }
 
     /**
@@ -99,10 +88,10 @@ public final class Reports {
      * Informe predefinido. Mostrará: ap1, ap2, nombre y en función de si la
      * persona es mayor de edad o no el siguiente texto:
      *
-     * MAYOR DE EDAD (si edad >17) | MENOR DE EDAD (si edad <18)
+     * MAYOR DE EDAD (si edad >=18) | MENOR DE EDAD (si edad <18)
      */
     public static void predefinedAgeDistributedReport() {
-
+        compileFillAndShowReport("\\ejercicio_3.jrxml");
     }
 
     /**
@@ -112,30 +101,39 @@ public final class Reports {
      * registro asociado a dicho DNI.
      */
     public static void customFullReport(String dni) {
-
+        JasperParameters.getMap().put(JasperParameters.DNI, dni);
+        compileFillAndShowReport("\\ejercicio_4.jrxml");
     }
 
     /**
-     * Informe ejercicio 5.
+     * Informe ejercicio 5.Informe personalizado.Dado un rango de edades
+     * mostrará: ap1, nombre y edad de todos los usuarios cuya edad este
+     * comprendida en dicho rango.
      *
-     * Informe personalizado. Dado un rango de edades mostrará: ap1, nombre y
-     * edad de todos los usuarios cuya edad este comprendida en dicho rango.
      * Además para cada uno de los registros mostrados deberá indicar el número
      * de meses que tiene la persona mostrada.
+     *
+     * @param minAge
+     * @param maxAge
      */
     public static void customRangedAgeReport(int minAge, int maxAge) {
-
+        JasperParameters.getMap().put(JasperParameters.MIN_AGE, minAge);
+        JasperParameters.getMap().put(JasperParameters.MAX_AGE, maxAge);
+        compileFillAndShowReport("\\ejercicio_5.jrxml");
     }
 
     /**
-     * Informe ejercicio 6.
+     * Informe ejercicio 6.Informe personalizado.
      *
-     * Informe personalizado. Dada una única letra que se pedirá al usuario,
-     * mostrará: nombre, ap1, ap2 y edad de aquellos registros cuyo segundo
-     * apellido comience por la letra indicada.
+     * Dada una única letra que se pedirá al usuario, mostrará: nombre, ap1, ap2
+     * y edad de aquellos registros cuyo segundo apellido comience por la letra
+     * indicada.
+     *
+     * @param value
      */
     public static void customSurnameSearchReport(char value) {
-
+        JasperParameters.getMap().put(JasperParameters.CHAR_VALUE, value);
+        compileFillAndShowReport("\\ejercicio_6.jrxml");
     }
 
     /**
@@ -151,4 +149,17 @@ public final class Reports {
 
     }
 
+    public static void compileFillAndShowReport(String route) throws HeadlessException {
+        try ( Connection instance = DatabaseConnection.getInstance()) {
+            JasperReport compiledReport = JasperCompileManager.compileReport(REPORTS_DIRECTORY.concat(route));
+            JasperPrint fillReport = JasperFillManager.fillReport(compiledReport, JasperParameters.getMap(), instance);
+            if (fillReport.getPages().isEmpty()) {
+                JOptionPane.showMessageDialog(REPORT_VIEWER, NO_DATA);
+                return;
+            }
+            JasperViewer.viewReport(fillReport, false);
+        } catch (JRException | SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
 }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.20.0.final using JasperReports Library version 6.20.0-2bc7ab61c56f459e8176eb05c7705e145cd400ad  -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ejercicio_2" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="13acf49e-4913-4d1b-bccc-113817ad15d1">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ejercicio_3" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="13acf49e-4913-4d1b-bccc-113817ad15d1">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Connection.jrdax"/>
 	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false"/>
@@ -16,21 +16,31 @@
 	<parameter name="nameSurname" class="java.lang.String"/>
 	<queryString language="SQL">
 		<![CDATA[SELECT ap1,
-	nombre
+	ap2,
+	nombre,
+	edad
 FROM `BDInformes1`.`PERSONAS`
-WHERE 
-	 `BDInformes1`.`PERSONAS`.edad < '18' 
 ORDER BY `BDInformes1`.`PERSONAS`.ap1 DESC,
-	`BDInformes1`.`PERSONAS`.nombre DESC]]>
+	`BDInformes1`.`PERSONAS`.ap2 DESC]]>
 	</queryString>
 	<field name="ap1" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="ap1"/>
 		<property name="com.jaspersoft.studio.field.label" value="ap1"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="PERSONAS"/>
 	</field>
+	<field name="ap2" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="ap2"/>
+		<property name="com.jaspersoft.studio.field.label" value="ap2"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="PERSONAS"/>
+	</field>
 	<field name="nombre" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="nombre"/>
 		<property name="com.jaspersoft.studio.field.label" value="nombre"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="PERSONAS"/>
+	</field>
+	<field name="edad" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="edad"/>
+		<property name="com.jaspersoft.studio.field.label" value="edad"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="PERSONAS"/>
 	</field>
 	<background>
@@ -45,11 +55,10 @@ ORDER BY `BDInformes1`.`PERSONAS`.ap1 DESC,
 					<textElement>
 						<font size="22" isBold="false"/>
 					</textElement>
-					<text><![CDATA[Ejercicio 2]]></text>
+					<text><![CDATA[Ejercicio 3]]></text>
 				</staticText>
 				<textField textAdjust="ScaleFont">
-					<reportElement x="0" y="0" width="450" height="66" forecolor="#FFFFFF" uuid="f3d3cbd5-9d4c-4ad8-a0cf-b2ff9d24d278"/>
-					<box padding="5"/>
+					<reportElement x="0" y="0" width="450" height="66" forecolor="#FFFFFF" uuid="3f09d0dd-1e0a-4657-80d3-ab6c4891c5f7"/>
 					<textElement>
 						<font size="22"/>
 					</textElement>
@@ -74,28 +83,28 @@ ORDER BY `BDInformes1`.`PERSONAS`.ap1 DESC,
 	<columnHeader>
 		<band height="26" splitType="Stretch">
 			<staticText>
-				<reportElement style="Column header" x="0" y="7" width="277" height="18" forecolor="#000000" uuid="b65ae11a-cd46-4e33-a326-aff1007608ba">
-					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="917a0a85-88f5-4b8f-b768-5036a020af18"/>
+				<reportElement x="0" y="0" width="141" height="26" uuid="f04300e9-9938-4eee-8c0a-75bc13a179be">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="888e3d8e-9e90-4d09-8067-6e54773d9922"/>
 				</reportElement>
-				<box>
-					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#030303"/>
-				</box>
-				<textElement>
-					<font isBold="false"/>
-				</textElement>
-				<text><![CDATA[ap1]]></text>
+				<text><![CDATA[APELLIDO 1]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="277" y="7" width="277" height="18" forecolor="#000000" uuid="d21851f3-0767-4963-b0ca-d8691caf051a">
-					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="9e0ee7af-9540-4065-89f7-20017b7e37a3"/>
+				<reportElement x="141" y="0" width="138" height="26" uuid="d72387f9-16d9-444d-b9bb-6268cc3e46f0">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="e5874a20-8c68-4d03-9c03-859ab96b0314"/>
 				</reportElement>
-				<box>
-					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#030303"/>
-				</box>
-				<textElement>
-					<font isBold="false"/>
-				</textElement>
-				<text><![CDATA[nombre]]></text>
+				<text><![CDATA[APELLIDO 2]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="279" y="0" width="138" height="26" uuid="38b760a6-4d66-473f-8410-f16df3858c8a">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="63d55346-07c9-438f-889b-d488607db500"/>
+				</reportElement>
+				<text><![CDATA[NOMBRE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="417" y="0" width="138" height="26" uuid="487332df-67f0-40a7-aa80-5058978a4a32">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="7f33bcd5-d112-4708-a82f-5e14f190ca46"/>
+				</reportElement>
+				<text><![CDATA[EDAD]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
@@ -103,23 +112,29 @@ ORDER BY `BDInformes1`.`PERSONAS`.ap1 DESC,
 		<band height="18" splitType="Stretch">
 			<frame>
 				<reportElement style="Row" mode="Opaque" x="0" y="0" width="555" height="18" uuid="b50221b5-8254-440b-8c6f-1f0b138c9259"/>
-				<textField textAdjust="StretchHeight">
-					<reportElement style="Detail" positionType="Float" x="0" y="0" width="277" height="18" uuid="8a5eea4d-5b61-4e68-85de-4fe21d7300fd">
-						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="917a0a85-88f5-4b8f-b768-5036a020af18"/>
+				<textField>
+					<reportElement x="0" y="0" width="141" height="18" uuid="e820a123-9270-4af5-ba04-f400fbc7cb92">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="888e3d8e-9e90-4d09-8067-6e54773d9922"/>
 					</reportElement>
-					<textElement>
-						<font size="14"/>
-					</textElement>
 					<textFieldExpression><![CDATA[$F{ap1}]]></textFieldExpression>
 				</textField>
-				<textField textAdjust="StretchHeight">
-					<reportElement style="Detail" positionType="Float" x="277" y="0" width="277" height="18" uuid="fdcfc583-c66a-4810-8da2-4504cc350136">
-						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="9e0ee7af-9540-4065-89f7-20017b7e37a3"/>
+				<textField>
+					<reportElement x="141" y="0" width="138" height="18" uuid="d6d07e9b-bf9f-4fdc-a4b2-e6855a23d3e1">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="e5874a20-8c68-4d03-9c03-859ab96b0314"/>
 					</reportElement>
-					<textElement>
-						<font size="14"/>
-					</textElement>
+					<textFieldExpression><![CDATA[$F{ap2}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="279" y="0" width="138" height="18" uuid="22fdb692-fcd6-4c86-8512-0aaefd21c0f8">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="63d55346-07c9-438f-889b-d488607db500"/>
+					</reportElement>
 					<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="417" y="0" width="138" height="18" uuid="61503414-784e-4f23-b528-01aa8eed61e6">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="7f33bcd5-d112-4708-a82f-5e14f190ca46"/>
+					</reportElement>
+					<textFieldExpression><![CDATA[$F{edad} < 18 ? "Menor de edad" : "Mayor de edad"]]></textFieldExpression>
 				</textField>
 			</frame>
 		</band>

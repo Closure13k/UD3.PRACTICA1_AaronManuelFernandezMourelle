@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.0.final using JasperReports Library version 6.20.0-2bc7ab61c56f459e8176eb05c7705e145cd400ad  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ejercicio_5" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="64e0f1f5-1b34-4e1d-8b3f-1b3545d44e78">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Connection.jrdax"/>
+	<parameter name="minAge" class="java.lang.Integer"/>
+	<parameter name="maxAge" class="java.lang.Integer"/>
+	<parameter name="nameSurname" class="java.lang.String"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT ap1, nombre, edad, edad * 12
+FROM BDInformes1.PERSONAS
+WHERE edad BETWEEN  $P{minAge}  AND $P{maxAge} ]]>
+	</queryString>
+	<field name="ap1" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="ap1"/>
+		<property name="com.jaspersoft.studio.field.label" value="ap1"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="PERSONAS"/>
+	</field>
+	<field name="nombre" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nombre"/>
+		<property name="com.jaspersoft.studio.field.label" value="nombre"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="PERSONAS"/>
+	</field>
+	<field name="edad" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="edad"/>
+		<property name="com.jaspersoft.studio.field.label" value="edad"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="PERSONAS"/>
+	</field>
+	<field name="edad * 12" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.name" value="edad * 12"/>
+		<property name="com.jaspersoft.studio.field.label" value="edad * 12"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="560" height="79" uuid="8a84bc04-39d0-40dd-bc9c-6a096bb78e29"/>
+				<textElement verticalAlignment="Middle">
+					<font size="24"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{nameSurname}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="31" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="141" height="30" uuid="c6ee3e5f-d904-40dd-acb7-3c110da9183e">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="16c03d3e-0066-4f29-9bd0-d2d5e11a6acc"/>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="2.0" lineStyle="Double"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[APELLIDO 1]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="141" y="0" width="138" height="30" uuid="17041e27-ecc1-4916-9347-58ef2d561b29">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="066cca3f-03c8-45df-b2f7-9d7800a4048f"/>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="2.0" lineStyle="Double"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[NOMBRE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="279" y="0" width="138" height="30" uuid="f41cce1a-0c79-4dbf-8162-91c13ff675a8">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="de24a49e-53e7-432e-b962-1fc31e2e1284"/>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="2.0" lineStyle="Double"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[EDAD]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="417" y="0" width="138" height="30" uuid="a6fcc950-4292-42e1-8b9e-d6ef2188d0fa">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="add11854-62ec-4430-a2d7-a944c37325d5"/>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="2.0" lineStyle="Double"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[EDAD EN MESES]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="30" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="141" height="30" uuid="5688d4ef-bc99-4a62-b20b-48aaf27c827d">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="16c03d3e-0066-4f29-9bd0-d2d5e11a6acc"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{ap1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="141" y="0" width="138" height="30" uuid="344e67b5-d743-44cd-af69-d21d62f47f59">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="066cca3f-03c8-45df-b2f7-9d7800a4048f"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="279" y="0" width="138" height="30" uuid="093335c3-dbf3-45eb-bb33-c6784e979b37">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="de24a49e-53e7-432e-b962-1fc31e2e1284"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{edad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="417" y="0" width="138" height="30" uuid="0445bd8e-7c53-41ab-bdef-dcc9cf4b65df">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="add11854-62ec-4430-a2d7-a944c37325d5"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{edad * 12}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<textField>
+				<reportElement x="179" y="24" width="100" height="30" uuid="e0d96fab-c8fc-4dc1-b137-db19a7d661d5"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Página " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="279" y="24" width="100" height="30" uuid="f5c66a07-4c90-4d16-a0d9-0bbc722d127b"/>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[" de " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

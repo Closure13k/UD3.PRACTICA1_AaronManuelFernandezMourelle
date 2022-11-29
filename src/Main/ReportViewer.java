@@ -4,11 +4,8 @@
  */
 package Main;
 
-import Controller.DatabaseConnection;
 import Controller.Reports;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -16,10 +13,13 @@ import java.util.logging.Logger;
  */
 public class ReportViewer extends javax.swing.JFrame {
 
-    /**
-     * Creates new form ReportViewer
-     */
-    public ReportViewer() {
+    private static ReportViewer rv;
+
+    public static ReportViewer getInstance() {
+        return rv == null ? (rv = new ReportViewer()) : rv;
+    }
+
+    private ReportViewer() {
         initComponents();
     }
 
@@ -218,11 +218,12 @@ public class ReportViewer extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEx3ActionPerformed
 
     private void btnEx4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEx4ActionPerformed
-
+        String dni = JOptionPane.showInputDialog("Introduce el DNI a buscar:");
+        Reports.customFullReport(dni);
     }//GEN-LAST:event_btnEx4ActionPerformed
 
     private void btnEx5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEx5ActionPerformed
-
+        MinMaxAge.getInstance(this).setVisible(true);
     }//GEN-LAST:event_btnEx5ActionPerformed
 
     private void btnEx6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEx6ActionPerformed
@@ -234,47 +235,9 @@ public class ReportViewer extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEx7ActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        try {
-            DatabaseConnection.getInstance().close();
-        } catch (SQLException ex) {
-            Logger.getLogger(ReportViewer.class.getName()).log(Level.SEVERE, null, ex);
-        }
+
     }//GEN-LAST:event_formWindowClosing
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ReportViewer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ReportViewer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ReportViewer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ReportViewer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ReportViewer().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEx1;

@@ -7,6 +7,7 @@
 	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
 	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
 	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<parameter name="nameSurname" class="java.lang.String"/>
 	<queryString language="SQL">
 		<![CDATA[SELECT dni,
 	nombre,
@@ -49,16 +50,18 @@ ORDER BY `BDInformes1`.`PERSONAS`.dni DESC,
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="70" splitType="Stretch">
-			<staticText>
-				<reportElement style="Title" x="0" y="13" width="263" height="33" uuid="91f5fe7f-a65f-46a3-81ae-30f2d82c45a2"/>
-				<textElement verticalAlignment="Middle"/>
-				<text><![CDATA[AaronFM]]></text>
-			</staticText>
+		<band height="71" splitType="Stretch">
 			<staticText>
 				<reportElement style="SubTitle" x="117" y="46" width="157" height="22" uuid="6931f6fc-c9e8-4cc3-9eec-607a123c87f7"/>
 				<text><![CDATA[Ejercicio 1]]></text>
 			</staticText>
+			<textField textAdjust="ScaleFont">
+				<reportElement x="0" y="0" width="555" height="46" uuid="2383a471-7f2d-4b16-9e12-1be7f4e914dc"/>
+				<textElement>
+					<font size="22"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{nameSurname}]]></textFieldExpression>
+			</textField>
 		</band>
 	</title>
 	<pageHeader>
