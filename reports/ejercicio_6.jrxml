@@ -5,7 +5,7 @@
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Connection.jrdax"/>
 	<style name="Style1">
 		<conditionalStyle>
-			<conditionExpression><![CDATA[$V{REPORT_COUNT} % 2 == 0 ]]></conditionExpression>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT} % 2 == 0]]></conditionExpression>
 			<style mode="Opaque" backcolor="#D9D9D9"/>
 		</conditionalStyle>
 	</style>
@@ -17,7 +17,7 @@
 	ap2,
 	edad
 FROM `BDInformes1`.`PERSONAS`
-WHERE nombre LIKE  '$P!{charValue}%'
+WHERE ap2 LIKE  '$P!{charValue}%'
 ORDER BY nombre, ap1, ap2]]>
 	</queryString>
 	<field name="nombre" class="java.lang.String">

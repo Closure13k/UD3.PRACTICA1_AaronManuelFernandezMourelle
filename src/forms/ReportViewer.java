@@ -2,9 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package Main;
+package forms;
 
-import Controller.Reports;
+import controller.Reports;
 import javax.swing.JOptionPane;
 
 /**
@@ -227,11 +227,11 @@ public class ReportViewer extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEx5ActionPerformed
 
     private void btnEx6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEx6ActionPerformed
-
+       CharacterSearch.getInstance(this).setVisible(true);
     }//GEN-LAST:event_btnEx6ActionPerformed
 
     private void btnEx7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEx7ActionPerformed
-
+        Reports.customFullAgeReport();
     }//GEN-LAST:event_btnEx7ActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing

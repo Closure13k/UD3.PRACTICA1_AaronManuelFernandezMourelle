@@ -1,32 +1,21 @@
-package Controller;
+package controller;
 
-import java.io.ByteArrayInputStream;
+import forms.ReportViewer;
+import java.awt.HeadlessException;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.URISyntaxException;
-import java.net.URL;
+import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+import javax.swing.JOptionPane;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
-import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JasperViewer;
-import org.apache.commons.collections4.bag.HashBag;
-import Main.ReportViewer;
-import java.sql.Connection;
-
-import static Controller.JasperParameters.REPORTS_DIRECTORY;
-import java.awt.HeadlessException;
-import javax.swing.JOptionPane;
+import static controller.JasperParameters.REPORTS_DIRECTORY;
 
 /*
 Para todos los informes:
@@ -58,8 +47,8 @@ public final class Reports {
     }
 
     //</editor-fold>
-    public static void main(String[] args) {
-        REPORT_VIEWER.setVisible(true);
+    public static ReportViewer getReportViewer() {
+        return REPORT_VIEWER;
     }
 
     /**
@@ -146,9 +135,23 @@ public final class Reports {
      * (las imágenes se adjuntan con la documentación de la práctica).
      */
     public static void customFullAgeReport() {
-
+        try {
+            BufferedImage ko = ImageIO.read(new File("./images/ko.png"));
+            BufferedImage ok = ImageIO.read(new File("./images/ok.png"));
+            JasperParameters.getMap().put(JasperParameters.IMG_KO, ko);
+            JasperParameters.getMap().put(JasperParameters.IMG_OK, ok);
+            compileFillAndShowReport("\\ejercicio_7.jrxml");
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(REPORT_VIEWER, ex.getMessage());
+        }
     }
 
+    /**
+     * Reutilización de código.
+     *
+     * @param route ruta del .jrxml
+     * @throws HeadlessException
+     */
     public static void compileFillAndShowReport(String route) throws HeadlessException {
         try ( Connection instance = DatabaseConnection.getInstance()) {
             JasperReport compiledReport = JasperCompileManager.compileReport(REPORTS_DIRECTORY.concat(route));
@@ -159,7 +162,7 @@ public final class Reports {
             }
             JasperViewer.viewReport(fillReport, false);
         } catch (JRException | SQLException ex) {
-            ex.printStackTrace();
+            JOptionPane.showMessageDialog(REPORT_VIEWER, ex.getMessage());
         }
     }
 }
